@@ -1,0 +1,23 @@
+RENDER STUFF DOCUMENTATION:
+	to draw triangles you need a shader
+	it gets executed for each pixel
+	that passed the point in triangle and depth tests
+	and recieves a pointer to Struct pixeldata-
+	must return an Int
+	--struct pixeldata ---
+	Vec3D center -> the screen position of pixel with z coordinate
+	Vec3D localpos -> the (barycentric) local position of a point in a triangle
+	int tri_index -> the index of the triangle for which the pixel renders
+	int x -> the x coordinate of the point's left top corner(for array indexing)
+	int y -> the y coordinate of the point's left top corner(for array indexing)
+	void * userarg -> a pointer to user data used by the shader(can be null if the shader doesn't want it)
+	
+	WHAT YOU NEED TO RENDER
+
+	a shader given the struct returns int color
+
+	a buffer - created wia createBuffer(width, height); with buffer widths in pixels
+	IT CONTAINS BOTH PIXEL AND DEPTH BUFFER
+	
+	your TRIANGLE DATA in form of an Vec3D array where size %3 = 0;
+	:
