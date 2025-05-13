@@ -1,6 +1,6 @@
 RENDER STUFF DOCUMENTATION:
 	to draw triangles you need a shader
-	it gets executed for each pixel
+	blah blah blah blah blah blah blah blah blah blah
 	that passed the point in triangle and depth tests
 	and recieves a pointer to Struct pixeldata-
 	must return an Int
