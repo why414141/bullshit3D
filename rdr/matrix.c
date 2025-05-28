@@ -2,7 +2,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include"matrix.h"
-//im very new to matrix math
 float toRad(float deg){		
 	float res = deg/180*M_PI; 
 	return res; 
@@ -18,7 +17,6 @@ void presentMatrix(float* mat, int m, int p){
 	}
 }
 int mmul(float * mat1, float * mat2,float * res, int m, int p, int n){
-	//very fucking unsafe	
 	float dot;
 	int index;
 	int limit = m*p - 1;
@@ -31,7 +29,7 @@ int mmul(float * mat1, float * mat2,float * res, int m, int p, int n){
 			if ((index = i*p+j) > limit){
 				printf("matrix: out of bounds on mmul\n");
 				return -1;
-			}//an attempt to make it safe
+			}
 				res[index] = dot;
 			}
 	}
@@ -39,7 +37,6 @@ int mmul(float * mat1, float * mat2,float * res, int m, int p, int n){
 int generateRotationMatrix3(float * out,float * in){
 	float cos_ =(float) cos(*in);
 	float sin_ = (float) sin(*in);
-	//idk how to better do this :<
 	float yawMat[] = {
 	cos_, - sin_, 0,
 	sin_, cos_, 0,

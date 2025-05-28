@@ -17,9 +17,7 @@ int shader(struct pixeldata *pd){
 	return pd -> tri_index / 10;
 }
 Mesh * readStl(char * filename, int dump, int yap){
-	//sex
 	FILE * file = fopen(filename, "r");
-	//dump header
 	Mesh * out = malloc(sizeof(Mesh));
 	char headerbuf[81];
 	int meshVecPointer;
@@ -32,7 +30,6 @@ Mesh * readStl(char * filename, int dump, int yap){
 	out -> tris = tri_count;
 	out -> data = malloc(tri_count*3*sizeof(Vec3D));
 	for (int t = 0; t < tri_count; t++){
-		//for now , dump the normal
 		fseek(file, 12, SEEK_CUR);
 		fread (out -> data + t*3, sizeof(Vec3D),3,file);
 		if (yap){
@@ -59,9 +56,7 @@ int main(){
 		resetDepthBuffer(buffer, 100);
 		copyMesh(screen_mesh, curr_mesh);
 
-	rotate.pitch += 10;
-//		rotate.yaw += 10;
-//	rotate.roll += 10
+		rotate.pitch += 10;
 		transformMesh(screen_mesh, &offset, &rotate, 0.7);
 		applySimplePerspective(screen_mesh -> data, screen_mesh -> tris * 3, 1,1);
 		renderMesh(screen_mesh, buffer, shader);

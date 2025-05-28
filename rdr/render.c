@@ -9,7 +9,6 @@ Buffer * createBuffer(int width,int height){
 	out -> width = width;
 	out -> height = height;
 	out -> color_data = malloc(width*height * sizeof(char));
-	//for systems where char is two bytes...
 	out -> depth_data = malloc(width*height * sizeof(float));
 	return out;
 }
@@ -34,7 +33,6 @@ Vec3D shuffleVec(Vec3D* vec){
 int putPx(int x, int y, Buffer* target, tiltspec tilt, char color){
 	int index = tilt? x*target -> width+y:y*target -> width+x;
 	if (index > target -> width*target -> height||index < 0){
-		//hope the compiler is smart enough to precompute this
 		return -1;
 	}
 	target -> color_data[index] = color;
@@ -90,7 +88,6 @@ float mapXYtoZ(Vec3D * t, Vec3D* out){
 	out -> x = normal.x/(- normal.z); out -> y = normal.y/(- normal.z);
 	out -> z = 0;
 	return  t[1].z - t[1].y * normal.y/(- normal.z) - t[1].x * normal.x/(- normal.z);	
-	//math, ew..
 }
 float calculateZ(Vec3D * mult,float constant, Vec3D * point){
 	return point->x*mult->x + point->y * mult->y + constant;
@@ -168,7 +165,6 @@ int drawTriangles(Vec3D* arr,int size, pxShader shader, void * args,Buffer * buf
 }
 
 int drawLine_(Vec3D *p1, Vec3D *p2, Buffer * buffer, char color, tiltspec state, int n){
-		//default to x as horizon
 		float deltaX =(p2->x-p1->x);
 		float slope = (p2->y-p1->y)/deltaX;
 		if(n>2)return -2;
@@ -179,7 +175,7 @@ int drawLine_(Vec3D *p1, Vec3D *p2, Buffer * buffer, char color, tiltspec state,
 		}
 
 		int step = p1->x > p2->x?-1:1;
-		int tgt = ceil((p2->x - p1->x));//DP
+		int tgt = ceil((p2->x - p1->x));
 		for(int i = 0; i != tgt; i+=step){
 			putPx(i + p1->x,p1 -> y + (int) (slope*i), buffer, state,color);			
 		} 

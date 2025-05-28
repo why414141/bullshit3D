@@ -12,7 +12,6 @@ Mesh * createMesh(int triangles){
 void destroyMesh(Mesh * mesh){
 	free(mesh -> data);
 	free(mesh);
-	//hope i did this right
 }
 int copyMesh(Mesh * in, Mesh * out){
 	if (in -> data == NULL || out -> data == NULL){
@@ -30,6 +29,5 @@ void transformMesh(Mesh * mesh, Vec3D * translate, Angle * rotate, float scale){
 	offsetVectors(mesh -> data, translate, mesh -> tris * 3, mesh -> data);
 }
 void renderMesh(Mesh * mesh, Buffer * buffer, pxShader shader){
-	//doesent render anything, go fuck yourself
 	drawTriangles(mesh -> data, mesh -> tris, shader, NULL, buffer);
 }

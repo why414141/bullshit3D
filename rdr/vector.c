@@ -97,15 +97,11 @@ float triArea(Vec3D * in){
 	return sqrt((a+b+c)*(-a+b+c)*(a-b+c)*(a+b-c)/16);
 }
 void calculateTriangleSides(Vec3D * tri, Vec3D * out){
-	//01 12 20
-	//tri is an array of vects containing (at least) three of them
 	out -> x = distance(&tri[0], &tri[1]);	
 	out -> y = distance(&tri[1], &tri[2]);
 	out -> z = distance(&tri[2], &tri[0]);
 }
 void bary3(Vec3D * dist, Vec3D * sides, Vec3D * out){
-	//naive approach with areas
-	//for clarity sake
 	float total_area = triArea (sides);
 	Vec3D t1 = {dist -> x, dist -> y, sides -> x};
 	Vec3D t2 = {dist -> y, dist -> z, sides -> y};
